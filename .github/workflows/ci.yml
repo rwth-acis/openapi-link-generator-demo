@@ -1,0 +1,37 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1.1.0
+        with:
+          node-version: '12.x'
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm run ng -- test --watch=false --progress=false --browsers=ChromeHeadlessCI
+
+      - name: Run e2e tests
+        run: npm run ng -- e2e --protractor-config=./e2e/protractor-ci.conf.js
+
+      - name: Run prettier
+        uses: samuelmeuli/lint-action@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          prettier: true
+
+      - name: Run tslint
+        run: npm run lint
+
+      - name: Run build
+        run: npm run build

@@ -1,0 +1,16 @@
+<div>
+  <div class="custom-file mb-3">
+    <input
+      type="file"
+      class="custom-file-input"
+      id="fileInput"
+      (change)="onFileSelected($event.target.files)"
+      required
+    />
+    <label class="custom-file-label" for="fileInput" #labelImport>Choose file...</label>
+  </div>
+
+  <button class="btn btn-primary" [class.disabled]="file == null" (click)="file != null && uploadFile()">
+    Upload file
+  </button>
+</div>
