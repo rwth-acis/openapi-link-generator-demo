@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDiffModule } from 'ngx-diff';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
@@ -11,7 +12,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { AppComponent } from './app.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { TextLoaderComponent } from './text-loader/text-loader.component';
-import { UrlLoaderComponent } from './url-loader/url-loader.component';
 
 /**
  * Import specific languages for highlightingjs to avoid importing everything
@@ -23,10 +23,11 @@ export function getHighlightLanguages() {
 }
 
 @NgModule({
-  declarations: [AppComponent, FileUploadComponent, UrlLoaderComponent, TextLoaderComponent],
+  declarations: [AppComponent, FileUploadComponent, TextLoaderComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FontAwesomeModule,
     FormsModule,
     HttpClientModule,
     NgbModule,

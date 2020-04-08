@@ -3,34 +3,46 @@
 
   <p class="lead mb-5">Add links to an OpenAPI document.</p>
 
-  <div *ngIf="result == null && error == null" class="card shadow mb-5">
-    <div class="card-header">
-      <ul ngbNav #requestTabs="ngbNav" class="nav-tabs card-header-tabs">
-        <li ngbNavItem>
-          <a ngbNavLink>Text</a>
-          <ng-template ngbNavContent>
-            <app-text-loader (dataLoaded)="dataLoaded($event)"></app-text-loader>
-          </ng-template>
-        </li>
-        <li ngbNavItem>
-          <a ngbNavLink>File</a>
-          <ng-template ngbNavContent>
-            <app-file-upload (dataLoaded)="dataLoaded($event)"></app-file-upload>
-          </ng-template>
-        </li>
-        <li ngbNavItem>
-          <a ngbNavLink>URL</a>
-          <ng-template ngbNavContent>
-            <app-url-loader></app-url-loader>
-          </ng-template>
-        </li>
-      </ul>
+  <ng-container *ngIf="result == null && error == null">
+    <div class="card shadow mb-5">
+      <div class="card-body">
+        <h5 class="card-title"><fa-icon [icon]="faInfoCircle"></fa-icon> Info</h5>
+        <p class="card-text text-justify">
+          <a href="https://github.com/rwth-acis/openapi-link-generator" target="_blank">OpenAPI-Link-Generator</a>
+          is a tool that enhances an existing Swagger/OpenAPI documentation by adding link definitions. To use it,
+          simply input a Swagger 2.0 or OpenAPI 3.0 document in JSON or YAML format below. The tool will run the link
+          generator on the document and show the result.
+        </p>
+        <p class="card-text">
+          The source code of this webservice is available on
+          <a href="https://github.com/rwth-acis/openapi-link-generator-demo" target="_blank">GitHub</a>.
+        </p>
+      </div>
     </div>
 
-    <div class="card-body">
-      <div class="mb-3" [ngbNavOutlet]="requestTabs"></div>
+    <div class="card shadow mb-5">
+      <div class="card-header">
+        <ul ngbNav #requestTabs="ngbNav" class="nav-tabs card-header-tabs">
+          <li ngbNavItem>
+            <a ngbNavLink>Text</a>
+            <ng-template ngbNavContent>
+              <app-text-loader (dataLoaded)="dataLoaded($event)"></app-text-loader>
+            </ng-template>
+          </li>
+          <li ngbNavItem>
+            <a ngbNavLink>File</a>
+            <ng-template ngbNavContent>
+              <app-file-upload (dataLoaded)="dataLoaded($event)"></app-file-upload>
+            </ng-template>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card-body">
+        <div class="mb-3" [ngbNavOutlet]="requestTabs"></div>
+      </div>
     </div>
-  </div>
+  </ng-container>
 
   <ng-container *ngIf="result">
     <div class="card shadow text-white bg-success mb-5">

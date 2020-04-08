@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { LinkGeneratorService } from './link-generator.service';
 
@@ -13,6 +14,8 @@ function formatJson(input: object) {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  faInfoCircle = faInfoCircle;
+
   result?: {
     numLinks: number;
     source: string;
