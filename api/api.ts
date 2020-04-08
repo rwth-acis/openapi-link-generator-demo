@@ -28,6 +28,7 @@ router.post('/add-links', async (req, res) => {
     .json({
       numLinks: result.numLinks,
       result: result.openapi,
+      source: document,
     })
     .end();
 });

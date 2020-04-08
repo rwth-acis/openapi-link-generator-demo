@@ -1,52 +1,89 @@
-<main>
-  <div class="container">
-    <h1 class="display-4 my-5">OpenAPI-Link-Generator</h1>
+<main class="container">
+  <h1 class="display-4 mt-5">OpenAPI-Link-Generator</h1>
 
-    <div class="card shadow mb-5" [class.text-white]="error" [class.bg-danger]="error">
-      <ng-container *ngIf="output == null && error == null; else result">
-        <div class="card-header">
-          <ul ngbNav #tabs="ngbNav" class="nav-tabs card-header-tabs">
-            <li ngbNavItem>
-              <a ngbNavLink>Text</a>
-              <ng-template ngbNavContent>
-                <app-text-loader (dataLoaded)="dataLoaded($event)"></app-text-loader>
-              </ng-template>
-            </li>
-            <li ngbNavItem>
-              <a ngbNavLink>File</a>
-              <ng-template ngbNavContent>
-                <app-file-upload (dataLoaded)="dataLoaded($event)"></app-file-upload>
-              </ng-template>
-            </li>
-            <li ngbNavItem>
-              <a ngbNavLink>URL</a>
-              <ng-template ngbNavContent>
-                <app-url-loader></app-url-loader>
-              </ng-template>
-            </li>
-          </ul>
-        </div>
+  <p class="lead mb-5">Add links to an OpenAPI document.</p>
 
-        <div class="card-body">
-          <div class="mb-3" [ngbNavOutlet]="tabs"></div>
-        </div>
-      </ng-container>
+  <div *ngIf="result == null && error == null" class="card shadow mb-5">
+    <div class="card-header">
+      <ul ngbNav #requestTabs="ngbNav" class="nav-tabs card-header-tabs">
+        <li ngbNavItem>
+          <a ngbNavLink>Text</a>
+          <ng-template ngbNavContent>
+            <app-text-loader (dataLoaded)="dataLoaded($event)"></app-text-loader>
+          </ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>File</a>
+          <ng-template ngbNavContent>
+            <app-file-upload (dataLoaded)="dataLoaded($event)"></app-file-upload>
+          </ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>URL</a>
+          <ng-template ngbNavContent>
+            <app-url-loader></app-url-loader>
+          </ng-template>
+        </li>
+      </ul>
+    </div>
 
-      <ng-template #result>
-        <div class="card-body">
-          <h5 class="card-title">
-            <ng-container *ngIf="output">Result</ng-container>
-            <ng-container *ngIf="error">Request failed</ng-container>
-          </h5>
-          <p class="card-text" *ngIf="error">
-            The following error occurred when communicating with the backend:
-          </p>
-          <pre><code [highlight]="output != null ? output : error"></code></pre>
-          <button class="btn" [class.btn-outline-light]="error" [class.btn-primary]="output" (click)="reset()">
-            Reset
-          </button>
+    <div class="card-body">
+      <div class="mb-3" [ngbNavOutlet]="requestTabs"></div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="result">
+    <div class="card shadow text-white bg-success mb-5">
+      <div class="card-body">
+        <h5 class="card-title">Success</h5>
+        <h6 class="card-subtitle">Added {{ result.numLinks }} links. The result can be found below.</h6>
+
+        <div class="mt-3">
+          <button class="btn btn-outline-light" (click)="reset()">Reset</button>
+          <a
+            class="btn btn-outline-light ml-3"
+            title="Download result"
+            [href]="result.downloadHref"
+            download="result.json"
+            >Download result</a
+          >
         </div>
-      </ng-template>
+      </div>
+    </div>
+
+    <div class="card shadow mb-5">
+      <div class="card-header">
+        <ul ngbNav #resultTabs="ngbNav" class="nav-tabs card-header-tabs">
+          <li ngbNavItem>
+            <a ngbNavLink>Diff</a>
+            <ng-template ngbNavContent>
+              <inline-diff [oldText]="result.source" [newText]="result.output" [lineContextSize]="5"></inline-diff>
+            </ng-template>
+          </li>
+          <li ngbNavItem>
+            <a ngbNavLink>Result</a>
+            <ng-template ngbNavContent>
+              <pre><code [highlight]="result.output" [lineNumbers]="true"></code></pre>
+            </ng-template>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card-body">
+        <div class="mb-3" [ngbNavOutlet]="resultTabs"></div>
+      </div>
+    </div>
+  </ng-container>
+
+  <div *ngIf="error" class="card shadow text-white bg-danger mb-5">
+    <h5 class="card-header">Request failed</h5>
+    <div class="card-body">
+      <h5 class="card-title">An error occurred during conversion.</h5>
+
+      <button class="btn btn-outline-light mt-3" (click)="reset()">
+        Reset
+      </button>
     </div>
   </div>
 </main>
+<ngx-spinner></ngx-spinner>

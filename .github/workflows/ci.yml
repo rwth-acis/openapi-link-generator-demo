@@ -21,8 +21,8 @@ jobs:
       - name: Run unit tests
         run: npm run ng -- test --watch=false --progress=false --browsers=ChromeHeadlessCI
 
-      - name: Run e2e tests
-        run: npm run ng -- e2e --protractor-config=./e2e/protractor-ci.conf.js
+      # - name: Run e2e tests
+      #   run: npm run ng -- e2e --protractor-config=./e2e/protractor-ci.conf.js
 
       - name: Run prettier
         uses: samuelmeuli/lint-action@v1

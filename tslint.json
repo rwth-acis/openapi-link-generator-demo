@@ -3,6 +3,7 @@
   "extends": ["tslint:recommended", "tslint-config-prettier"],
   "rules": {
     "quotemark": [true, "single"],
+    "ordered-imports": true,
     "no-console": false,
     "interface-name": false,
     "component-class-suffix": true,

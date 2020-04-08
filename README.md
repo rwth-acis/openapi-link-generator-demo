@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/github/license/rwth-acis/openapi-link-generator-demo)
 ![Heroku](https://heroku-badge.herokuapp.com/?app=openapi-link-generator)
 
-A live demo is available [here](https://openapi-link-generator.herokuapp.com).
+The demo is deployed [here](https://openapi-link-generator.herokuapp.com).
 
 This repository contains a demo webservice for [OpenAPI-Link-Generator](https://github.com/rwth-acis/openapi-link-generator).
 It allows to input an OpenAPI document via file upload or by pasting the text directly.

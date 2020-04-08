@@ -10,6 +10,6 @@ app.use('/api', apiRouter);
 app.use(express.static(appDir));
 
 app.listen(port, () => {
-  console.log(`Serving static filed from ${appDir}`);
+  console.log(`Serving static files from ${appDir}`);
   console.log(`Server is listening on port ${port}`);
 });

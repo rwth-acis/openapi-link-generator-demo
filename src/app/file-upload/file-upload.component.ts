@@ -1,5 +1,5 @@
-import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 import { ReadVarExpr } from '@angular/compiler';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-file-upload',
