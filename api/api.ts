@@ -6,12 +6,19 @@ import { OpenAPIV3 } from 'openapi-types';
 const router = express.Router();
 router.post('/add-links', async (req, res) => {
   let document: OpenAPIV3.Document;
+
   if (typeof req.body.input === 'string') {
-    document = await parseOpenAPIDocument(req.body.input);
-  } else if (typeof req.body.input === 'object') {
-    document = req.body.input;
+    try {
+      document = await parseOpenAPIDocument(req.body.input);
+    } catch (ex) {
+      res
+        .status(400)
+        .send({ message: `Unable to parse OpenAPI Document: ${ex.message}` })
+        .end();
+      return;
+    }
   } else {
-    res.status(400).end();
+    res.status(400).send({ message: 'Expected "input" to be a string' }).end();
     return;
   }
 

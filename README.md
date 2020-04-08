@@ -20,7 +20,7 @@ Frontend files are located in [src/](src/), backend files are located in [api/](
 Run `npm run watch` to start the backend and frontend simultaneously in watch mode.
 The application will automatically watch for code changes.
 
-Open the webpage at [localhost:4200](http://localhost:4200).
+Open the webpage at [http://localhost:4200](http://localhost:4200).
 
 ## Build
 
