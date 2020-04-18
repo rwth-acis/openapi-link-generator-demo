@@ -12,6 +12,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { AppComponent } from './app.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { TextLoaderComponent } from './text-loader/text-loader.component';
+import { UrlLoaderComponent } from './url-loader/url-loader.component';
 
 /**
  * Import specific languages for highlightingjs to avoid importing everything
@@ -23,7 +24,7 @@ export function getHighlightLanguages() {
 }
 
 @NgModule({
-  declarations: [AppComponent, FileUploadComponent, TextLoaderComponent],
+  declarations: [AppComponent, FileUploadComponent, TextLoaderComponent, UrlLoaderComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

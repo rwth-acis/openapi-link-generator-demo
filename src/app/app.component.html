@@ -24,15 +24,21 @@
       <div class="card-header">
         <ul ngbNav #requestTabs="ngbNav" class="nav-tabs card-header-tabs">
           <li ngbNavItem>
-            <a ngbNavLink>Text</a>
+            <a ngbNavLink>From Text</a>
             <ng-template ngbNavContent>
               <app-text-loader (dataLoaded)="dataLoaded($event)"></app-text-loader>
             </ng-template>
           </li>
           <li ngbNavItem>
-            <a ngbNavLink>File</a>
+            <a ngbNavLink>From File</a>
             <ng-template ngbNavContent>
               <app-file-upload (dataLoaded)="dataLoaded($event)"></app-file-upload>
+            </ng-template>
+          </li>
+          <li ngbNavItem>
+            <a ngbNavLink>From URL</a>
+            <ng-template ngbNavContent>
+              <app-url-loader (dataLoaded)="dataLoaded($event)"></app-url-loader>
             </ng-template>
           </li>
         </ul>

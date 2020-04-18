@@ -1,0 +1,14 @@
+<div>
+  <div *ngIf="downloadError" class="alert alert-danger">
+    Failed to fetch the linked document. Please make sure the URL is valid.
+  </div>
+
+  <div class="form-group">
+    <label for="textInput">Paste a link to an OpenAPI document</label>
+    <input class="form-control" id="textInput" type="text" [(ngModel)]="url" [placeholder]="placeholderUri" />
+  </div>
+
+  <button class="btn btn-primary" (click)="submit()">
+    Submit
+  </button>
+</div>

@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OpenAPIV3 } from 'openapi-types';
-import { Observable } from 'rxjs';
 
 const linkGenerationUrl = 'api/add-links';
 
